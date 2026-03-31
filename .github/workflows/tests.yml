@@ -1,0 +1,27 @@
+name: Testes Unitários
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Copiar o código
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependências
+        run: npm install
+        working-directory: server-main
+
+      - name: Correr os testes
+        run: npm test
+        working-directory: server-main
